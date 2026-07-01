@@ -14,6 +14,7 @@ RUN --mount=type=cache,target=.vite \
 # Stage 2: Serve with Nginx
 
 FROM nginx:alpine
+LABEL org.opencontainers.image.source=https://github.com/intens-intern-project/frontend
 
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html

@@ -3,7 +3,7 @@
 import axios, { type AxiosResponse } from 'axios';
 import { onMounted, ref } from 'vue';
 
-const backendURL = "http://localhost:8080";
+const backendURL = "http://localhost:8080/api";
 const error = ref<string | undefined>(undefined);
 const counterName = "default";
 const counter = ref<number>(0);
