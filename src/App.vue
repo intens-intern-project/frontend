@@ -52,7 +52,7 @@ const resetCounter = () => {
 
 const getApiVersion = () => {
 	error.value = undefined;
-	axios.put(`${backendURL}/version`).then((res: AxiosResponse<string>) => {
+	axios.get(`${backendURL}/version`).then((res: AxiosResponse<string>) => {
 		version_api.value = res.data;
 	}).catch((err) => {
 		error.value = "Failed to fetch";
