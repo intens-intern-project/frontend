@@ -7,9 +7,11 @@ const backendURL = "http://localhost:8080/api";
 const error = ref<string | undefined>(undefined);
 const counterName = "default";
 const counter = ref<number>(0);
+const version_api = ref<string>("");
 
 onMounted(() => {
 	getCounterValue();
+	getApiVersion();
 });
 
 interface CounterDTO {
@@ -48,10 +50,23 @@ const resetCounter = () => {
 	});
 }
 
+const getApiVersion = () => {
+	error.value = undefined;
+	axios.put(`${backendURL}/version`).then((res: AxiosResponse<string>) => {
+		version_api.value = res.data;
+	}).catch((err) => {
+		error.value = "Failed to fetch";
+		console.error(err);
+	});
+}
+
 </script>
 
 <template>
 	<main>
+		<h1>IIP</h1>
+		API: {{ version_api }} <br/>
+		<hr/>
 		<b>Counter value</b>: {{  counter }}
 		<br /><br/>
 
